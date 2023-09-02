@@ -27,6 +27,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 import { faHeart as fullHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as lineHeart } from "@fortawesome/free-regular-svg-icons";
 import { dbContext } from "../utils/database";
+import Error from "../components/error";
 const JobScreen = () => {
     const navigation = useNavigation();
     const route = useRoute();
@@ -123,6 +124,8 @@ const JobScreen = () => {
     const checkIfIsLiked = () => {
         return new Promise((resolve, reject) => {
             try {
+                console.log(jobDetails.job_id);
+                console.log(jobDetails.jobID);
                 db.transaction((tx) => {
                     tx.executeSql(
                         "SELECT * FROM LIKES WHERE jobID = ?",
@@ -155,20 +158,10 @@ const JobScreen = () => {
                 .catch((error) => {
                     console.error(error);
                 });
-        }, [])
+        }, [jobDetails])
     );
     if (error) {
-        return (
-            <View>
-                <SafeAreaView style={tw` bg-[#F8F6F4] p-3 mb-8`}>
-                    <View style={tw`h-full items-center justify-center`}>
-                        <Text style={tw`text-xl text-red-700 font-semibold`}>
-                            There was an error
-                        </Text>
-                    </View>
-                </SafeAreaView>
-            </View>
-        );
+        return <Error />;
     }
     return (
         <View>
@@ -185,7 +178,11 @@ const JobScreen = () => {
                     </TouchableOpacity>
                     {!liked ? (
                         <TouchableWithoutFeedback onPress={handleLike}>
-                            <View style={tw`bg-[#FF6000] p-2 rounded-lg`}>
+                            <View
+                                style={tw`${
+                                    jobDetails ? "hidden " : ""
+                                }bg-[#FF6000] p-2 rounded-lg`}
+                            >
                                 <FontAwesomeIcon
                                     icon={lineHeart}
                                     size={22}

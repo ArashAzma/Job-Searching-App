@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { RAPID_API_KEY } from "@env";
+// import { RAPID_API_KEY } from "@env";
 
 const useFetch = (endpoint, query) => {
     const [popularData, setPopularData] = useState([]);
@@ -18,7 +18,7 @@ const useFetch = (endpoint, query) => {
         url: `https://jsearch.p.rapidapi.com/${endpoint}`,
         headers: {
             "X-RapidAPI-Key":
-                "416cfb76f4mshefca5bd9d6bf5abp12ade0jsn816c880ab748",
+                "366663fe56msh77c437bef7c21fbp1d9530jsne9d24f7764bd",
             "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
         },
         params: { ...query },

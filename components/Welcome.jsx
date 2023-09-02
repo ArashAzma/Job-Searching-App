@@ -46,6 +46,15 @@ const Welcome = () => {
                                     />
                                 </TouchableOpacity>
                             </View>
+                            <View
+                                style={tw`w-22 bg-gray-400 py-4 px-4 rounded-lg bg-opacity-80`}
+                            >
+                                <Text
+                                    style={tw`text-white font-black text-xl `}
+                                >
+                                    Arash
+                                </Text>
+                            </View>
                         </View>
                     )}
                 </View>
