@@ -126,9 +126,9 @@ const JobScreen = () => {
                 db.transaction((tx) => {
                     tx.executeSql(
                         "SELECT * FROM LIKES WHERE jobID = ?",
-                        [jobDetails && jobDetails?.job_id],
+                        [jobDetails?.job_id || jobDetails?.jobID],
                         (_, { rows }) => {
-                            if (rows.length > 0) {
+                            if (rows?.length > 0) {
                                 resolve(true);
                             } else {
                                 resolve(false);
@@ -157,6 +157,19 @@ const JobScreen = () => {
                 });
         }, [])
     );
+    if (error) {
+        return (
+            <View>
+                <SafeAreaView style={tw` bg-[#F8F6F4] p-3 mb-8`}>
+                    <View style={tw`h-full items-center justify-center`}>
+                        <Text style={tw`text-xl text-red-700 font-semibold`}>
+                            There was an error
+                        </Text>
+                    </View>
+                </SafeAreaView>
+            </View>
+        );
+    }
     return (
         <View>
             <SafeAreaView style={tw` bg-[#F8F6F4] p-3 mb-8`}>
@@ -250,9 +263,9 @@ const JobScreen = () => {
                             <ScrollView
                                 horizontal
                                 showsHorizontalScrollIndicator={false}
-                                contentContainerStyle={tw`mb-6`}
+                                contentContainerStyle={tw`mb-6 `}
                             >
-                                {jobDetails?.job_description && (
+                                {jobDetails?.job_description?.length > 0 && (
                                     <ScrollButton
                                         title='About'
                                         y={this.aboutLayout?.y}
@@ -260,7 +273,8 @@ const JobScreen = () => {
                                         handleActive={handleActive}
                                     />
                                 )}
-                                {jobDetails?.job_highlights?.Qualifications && (
+                                {jobDetails?.job_highlights?.Qualifications
+                                    ?.length > 0 && (
                                     <ScrollButton
                                         title='Qualifications'
                                         y={this.qualificationsLayout?.y}
@@ -268,8 +282,8 @@ const JobScreen = () => {
                                         handleActive={handleActive}
                                     />
                                 )}
-                                {jobDetails?.job_highlights
-                                    ?.Responsibilities && (
+                                {jobDetails?.job_highlights?.Responsibilities
+                                    ?.length > 0 && (
                                     <ScrollButton
                                         title='Responses'
                                         y={this.respLayout?.y}
@@ -277,7 +291,7 @@ const JobScreen = () => {
                                         handleActive={handleActive}
                                     />
                                 )}
-                                {jobDetails?.apply_options && (
+                                {jobDetails?.apply_options?.length > 0 && (
                                     <ScrollButton
                                         title='Options'
                                         y={this.optionsLayout?.y}
@@ -285,7 +299,7 @@ const JobScreen = () => {
                                         handleActive={handleActive}
                                     />
                                 )}
-                                {jobDetails?.employer_reviews && (
+                                {jobDetails?.employer_reviews?.length > 0 && (
                                     <ScrollButton
                                         title='Reviews'
                                         y={this.reviewsLayout?.y}
@@ -307,7 +321,8 @@ const JobScreen = () => {
                                 <ReadMore text={jobDetails?.job_description} />
                             </View>
                             {/* Qualifications */}
-                            {jobDetails?.job_highlights?.Qualifications && (
+                            {jobDetails?.job_highlights?.Qualifications
+                                ?.length > 0 && (
                                 <View
                                     onLayout={(event) =>
                                         (this.qualificationsLayout =
@@ -324,7 +339,8 @@ const JobScreen = () => {
                                 </View>
                             )}
                             {/* resposibilites */}
-                            {jobDetails?.job_highlights?.Responsibilities && (
+                            {jobDetails?.job_highlights?.Responsibilities
+                                ?.length > 0 && (
                                 <View
                                     onLayout={(event) =>
                                         (this.respLayout =
@@ -341,7 +357,7 @@ const JobScreen = () => {
                                 </View>
                             )}
                             {/* options */}
-                            {jobDetails?.apply_options && (
+                            {jobDetails?.apply_options?.length > 0 && (
                                 <View>
                                     <Text style={tw`text-xl font-bold mb-2`}>
                                         Apply options
@@ -393,7 +409,7 @@ const JobScreen = () => {
                                 </View>
                             )}
                             {/* Reviews */}
-                            {jobDetails?.employer_reviews && (
+                            {jobDetails?.employer_reviews?.length > 0 && (
                                 <View
                                     onLayout={(event) =>
                                         (this.reviewsLayout =

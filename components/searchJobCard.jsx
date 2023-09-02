@@ -4,7 +4,11 @@ import tw from "twrnc";
 const SearchJobCard = ({ job, handleJobPress }) => {
     const { width } = Dimensions.get("window");
     return (
-        <TouchableOpacity onPress={() => handleJobPress(job?.job_id)}>
+        <TouchableOpacity
+            onPress={() => {
+                handleJobPress(job?.job_id || job?.jobID);
+            }}
+        >
             <View
                 style={tw` flex-row w-90 bg-white rounded-md py-4  gap-2 items-center relative`}
             >

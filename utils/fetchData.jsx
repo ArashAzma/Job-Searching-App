@@ -1,9 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { RAPID_API_KEY } from "@env";
-
-// const rapidApiKey = RAPID_API_KEY;
+import { RAPID_API_KEY } from "@env";
 
 const useFetch = (endpoint, query) => {
     const [popularData, setPopularData] = useState([]);
