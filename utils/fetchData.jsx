@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { RAPID_API_KEY } from "@env";
 
 const useFetch = (endpoint, query) => {
     const [popularData, setPopularData] = useState([]);
@@ -25,20 +24,9 @@ const useFetch = (endpoint, query) => {
     };
     const fetchJobDetails = async () => {
         setIsLoading(true);
-        // const value = await AsyncStorage.getItem("@detail");
-        // if (value) {
-        //     setJobDetails(JSON.parse(value));
-        //     console.log("FROM STORAGE");
-        //     setIsLoading(false);
-        // } else {
         try {
             const response = await axios.request(options);
             setJobDetails(response.data.data[0]);
-            // console.log(response.data.data[0]);
-            // await AsyncStorage.setItem(
-            //     "@detail",
-            //     JSON.stringify(response.data.data[0])
-            // );
             setIsLoading(false);
         } catch (error) {
             setError(error);

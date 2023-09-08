@@ -124,8 +124,6 @@ const JobScreen = () => {
     const checkIfIsLiked = () => {
         return new Promise((resolve, reject) => {
             try {
-                console.log(jobDetails.job_id);
-                console.log(jobDetails.jobID);
                 db.transaction((tx) => {
                     tx.executeSql(
                         "SELECT * FROM LIKES WHERE jobID = ?",
@@ -176,11 +174,31 @@ const JobScreen = () => {
                             />
                         </View>
                     </TouchableOpacity>
-                    {!liked ? (
+                    {!isLoading > 0 && (
+                        <TouchableWithoutFeedback onPress={handleLike}>
+                            <View style={tw`bg-[#FF6000] p-2 rounded-lg`}>
+                                {liked ? (
+                                    <FontAwesomeIcon
+                                        icon={fullHeart}
+                                        size={22}
+                                        style={tw`text-white`}
+                                    />
+                                ) : (
+                                    <FontAwesomeIcon
+                                        icon={lineHeart}
+                                        size={22}
+                                        style={tw`text-white`}
+                                    />
+                                )}
+                            </View>
+                        </TouchableWithoutFeedback>
+                    )}
+
+                    {/* {!liked ? (
                         <TouchableWithoutFeedback onPress={handleLike}>
                             <View
                                 style={tw`${
-                                    jobDetails ? "hidden " : ""
+                                    !jobDetails.length > 0 ? "hidden" : ""
                                 }bg-[#FF6000] p-2 rounded-lg`}
                             >
                                 <FontAwesomeIcon
@@ -200,7 +218,7 @@ const JobScreen = () => {
                                 />
                             </View>
                         </TouchableWithoutFeedback>
-                    )}
+                    )} */}
                 </View>
                 <ScrollView
                     ref={(ref) => (this.scrollViewRef = ref)}

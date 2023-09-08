@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light", 
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -14,7 +14,7 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": { 
+    "ios": {
       "supportsTablet": true
     },
     "android": {
@@ -31,6 +31,12 @@
       "eas": {
         "projectId": "944bb592-7f5d-43fd-9b54-1389e4eaa891"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/944bb592-7f5d-43fd-9b54-1389e4eaa891"
     }
   }
 }
