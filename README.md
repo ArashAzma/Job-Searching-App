@@ -1,7 +1,7 @@
 # React Native Job Search Application
 
 This mobile job search application, built using Expo and an API, incorporates asynchronous storage and SQLite to save preferred job listings. You can search for the latest job opportunities, view job responsibilities and qualifications, and contact employers through provided links. The application also utilizes NetInfo to notify users of their online status and features custom loading screens.
-
+ ` please use a Vpn if jobs dont load`
 ## Technologies Used
 
 - React Native
